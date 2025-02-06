@@ -9,7 +9,7 @@ OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 
 <<<<<->>>>>
 
-Posited Query (?): What do you think about open source collaboration between DeepSeek AI & OpenAI? Immediately ((working demand//transmitted supply)) out of same working O.S.S. sub-repository -per -subs README ((algorithmic//technical//or step-by-step*** guidebook)); underlying 100x-1000x improvement in now same working codebases?
+Posited Query (?): What do you think about open source collaboration between DeepSeek AI & OpenAI? Immediately ((working demand//transmitted supply)) out of same working O.S.S. sub-repository -per -subs; my I.P. original methodology README design docs -per sub-folder ((algorithmic//technical//or step-by-step*** guidebook)); underlying 100x-1000x improvement in now same working codebases?
 
 ***Footnote (1/kth nearest step forward<->backward): 
 
