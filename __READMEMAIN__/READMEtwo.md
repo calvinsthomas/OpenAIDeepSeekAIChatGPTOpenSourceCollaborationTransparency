@@ -26,6 +26,10 @@ npm start
 Usage
 Provide detailed instructions on how to use the project, including code samples and commands.
 
+Embed this code to your website:
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7293412872527699969" height="593" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
 Contributing
 Markdown
 ## Contributing
