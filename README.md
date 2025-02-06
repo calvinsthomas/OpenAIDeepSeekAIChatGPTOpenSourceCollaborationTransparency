@@ -1,5 +1,7 @@
 README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 
+#####UIUXAIGENERATEDINBUILTTOOLS
+
 OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 🐋 🤖 📧 📨 📥 📮 💌 ###InfiniteRecursion ###Algorithm
 
