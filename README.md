@@ -13,8 +13,9 @@ Posited Query (?): What do you think about open source collaboration between Dee
 
 ***Footnote (1/kth nearest step forward<->backward): 
 
-of hidden gaps and clearly expressed concepts!
-
+of hidden gaps and clearly expressed concepts of marketable edge ((agnostic//portable//sys.auto*****))!
+*****systematic and automated*****
+*****Is it possible to capture largest noise elements in a basket, in maximally lowest drawdown way; below resting level mean for 'cumulative_residuals' ((scatter//pareto)) or k-nearest to your ((max//min)) TP/SL*****
 <<<<<->>>>>
 
 #####UIUXLIKEAIGENERATEDLANDINGPAGE
