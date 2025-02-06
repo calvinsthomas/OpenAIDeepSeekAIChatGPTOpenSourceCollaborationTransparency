@@ -5,7 +5,7 @@ README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 🐋 🤖 📧 📨 📥 📮 💌 ###InfiniteRecursion ###Algorithm
 
-@OpenAI @ChatGPT @DeepSeek AI @Github ###Microsoft @Copilot 
+@OpenAI @ChatGPT @DeepSeek AI @Github ###Microsoft @Copilot @Nvidia AI @unstructured.io @CrewAI @Replit
 
 Posited Query (?): What do you think about open source collaboration between DeepSeek AI & OpenAI? Immediately ((working demand//transmitted supply)) out of same working O.S.S. sub-repository; underlying 100x-1000x improvement in now same working codebases?
 
