@@ -1,6 +1,8 @@
 README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 
-#####UIUXLIKEAIGENERATEDINBUILTTOOLS ((LINKEDIN//GITHUB//INSTA LINKS BLENDED MIXTURE))
+#####UIUXLIKE
+#####AIGENERATEDINBUILTTOOLS
+#####@((LINKEDIN//GITHUB//INSTA LINKS BLENDED MIXTURE))
 
 OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 🐋 🤖 📧 📨 📥 📮 💌 ###InfiniteRecursion ###Algorithm
@@ -19,6 +21,7 @@ of hidden gaps and clearly expressed concepts of marketable edge ((agnostic//por
 *****Is it possible to capture largest noise elements in a basket, in maximally lowest drawdown way; below resting level mean for 'cumulative_residuals' ((scatter//pareto)) or k-nearest to your ((max//min)) TP/SL (?)*****
 <<<<<->>>>>
 
-#####UIUXLIKEAIGENERATEDLANDINGPAGE
+#####UIUXLIKE
+#####AIGENERATEDLANDINGPAGE
 
 ![image](https://github.com/user-attachments/assets/b0b36784-9061-4668-a0b9-42375bf1f8f6)
