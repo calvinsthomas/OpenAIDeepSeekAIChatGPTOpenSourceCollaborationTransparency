@@ -23,7 +23,7 @@ Posited Query (?): What do you think about open source collaboration between Dee
 of hidden gaps and clearly expressed concepts of marketable edge ((agnostic//portable//sys.auto*****))!
 *****systematic and automated*****
 
-*****Is it possible to capture largest noise elements in a basket, in maximally lowest drawdown way; below resting level mean for algo key 'cumulative_residuals' ((scatter//pareto))*** or k-nearest to your ((max//min)) TP/SL (?)*****
+*****Is it possible to capture largest residual noise elements in a basket, in maximally lowest drawdown way; below resting level mean for algo key 'cumulative_residuals' ((scatter//pareto))*** or k-nearest to your ((max//min)) TP/SL (?)*****
 ***kth largest (Top 1% Symbols) or peak prominent symbols profit per symbol ($PPS) aka 'SYMBRES'
 <<<<<->>>>>
 
