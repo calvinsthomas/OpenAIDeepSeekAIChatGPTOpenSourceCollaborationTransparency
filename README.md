@@ -4,6 +4,11 @@ README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 #####AIGENERATEDINBUILTTOOLS
 #####@((LINKEDIN//GITHUB//INSTA LINKS BLENDED MIXTURE))
 
+1-Kth O.S.S. Style Newsletter
+OSSCollaborationTransparencyDeepSeekAIOpenAIChatGPT幻方AIHigh-Flyer:
+
+https://www.linkedin.com/newsletters/7293682639222304770/
+
 OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 🐋 🤖 📧 📨 📥 📮 💌 ###InfiniteRecursion ###Algorithm
 
