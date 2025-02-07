@@ -8,7 +8,7 @@ OpenAI 🤎 DeepSeek AI ChatGPT ###OpenSource ##Collaboration ###Transparency
 🐋 🤖 📧 📨 📥 📮 💌 ###InfiniteRecursion ###Algorithm
 
 @OpenAI @ChatGPT @DeepSeek AI @Github ###Microsoft @Copilot @Nvidia AI @unstructured.io @CrewAI @Replit
-
+🐋 🤖 👫 🆙 🇨🇳 🇺🇸 🤝 📮 
 <<<<<->>>>>
 
 Posited Query (?): What do you think about open source collaboration between DeepSeek AI & OpenAI? Immediately ((working demand//transmitted supply)) out of same working O.S.S. sub-repository -per -subs; my I.P. original methodology README design docs -per sub-folder ((algorithmic//technical//or step-by-step*** guidebook)); underlying 100x-1000x improvement in now same working codebases?
@@ -18,7 +18,8 @@ Posited Query (?): What do you think about open source collaboration between Dee
 of hidden gaps and clearly expressed concepts of marketable edge ((agnostic//portable//sys.auto*****))!
 *****systematic and automated*****
 
-*****Is it possible to capture largest noise elements in a basket, in maximally lowest drawdown way; below resting level mean for 'cumulative_residuals' ((scatter//pareto)) or k-nearest to your ((max//min)) TP/SL (?)*****
+*****Is it possible to capture largest noise elements in a basket, in maximally lowest drawdown way; below resting level mean for algo key 'cumulative_residuals' ((scatter//pareto))*** or k-nearest to your ((max//min)) TP/SL (?)*****
+***kth largest (Top 1% Symbols) or peak prominent symbols profit per symbol ($PPS) aka 'SYMBRES'
 <<<<<->>>>>
 
 #####UIUXLIKE
