@@ -1,1 +1,1 @@
-RANDOMMAINREADMEsubshiddenburiedsubfolderMETHOD
+RANDOMMAINREADMEsubshiddenburiedsubfolderMETHODsubssubfoldernamingconvention AKA namesake sub-folders for naming random algorithm generation via generative AI and methods (2): First, AI reverse-engineering and second AI auto-prompting (simplest ex. computer use injected requests or ai_spam_bot typing too many requests).
