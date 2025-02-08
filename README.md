@@ -18,8 +18,8 @@ BTSIM Early Efficacy in total algorithmic complexity and loc's reduction!
 #####AIGENERATEDINBUILTTOOLS
 #####@((LINKEDIN//GITHUB//INSTA LINKS BLENDED MIXTURE))
 
-1-Kth O.S.S. Style Newsletter
-OSSCollaborationTransparencyDeepSeekAIOpenAIChatGPT幻方AIHigh-Flyer:
+1-Kth O.S.S. Style Newsletter ||
+| Single-Column Cross-Sect. Study || BTSIM - Algo Pre’s Keys || FREQ AGN. sys. adverse selection at portfolio-holdings level accumulated baskets E.E. sortino target 20; no MDD | 3.67 Yr.; 500 stks. (or 3,000 stks.). || Agnostic cross-sectional study on singular columnar algo key ((pre-created//pre-generated)) ‘cumulative_residuals’
 
 https://www.linkedin.com/newsletters/7293682639222304770/
 
