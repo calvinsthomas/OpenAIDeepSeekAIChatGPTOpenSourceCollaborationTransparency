@@ -1,5 +1,9 @@
 README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 
+BTSIM ((Satisfying 99% of ALLOC REQ's ✅))
+
+BTSIM or prod-ready feature-eng. synth csv algo key 'cumulative_residuals' for .plot() -ing, satisfying 95-99% of allocators out there!
+
 #####UIUXLIKE
 #####AIGENERATEDINBUILTTOOLS
 #####@((LINKEDIN//GITHUB//INSTA LINKS BLENDED MIXTURE))
@@ -27,7 +31,6 @@ of hidden gaps and clearly expressed concepts of marketable edge ((agnostic//por
 ***kth largest (Top 1% Symbols) or peak prominent symbols profit per symbol ($PPS) aka 'SYMBRES'
 <<<<<->>>>>
 
-#####UIUXLIKE
-#####AIGENERATEDLANDINGPAGE
+#####AIGENERATEDSPLASHLANDINGPAGE
 
 ![image](https://github.com/user-attachments/assets/b0b36784-9061-4668-a0b9-42375bf1f8f6)
