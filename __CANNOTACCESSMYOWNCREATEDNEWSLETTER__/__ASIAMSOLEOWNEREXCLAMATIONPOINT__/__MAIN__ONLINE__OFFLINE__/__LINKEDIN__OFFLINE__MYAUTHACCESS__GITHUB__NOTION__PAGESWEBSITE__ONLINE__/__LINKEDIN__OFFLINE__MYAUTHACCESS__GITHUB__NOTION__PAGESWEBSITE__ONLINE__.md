@@ -8,7 +8,7 @@ https://www.linkedin.com/newsletters/7293682639222304770/		##offline(🔴)
 
 https://www.linkedin.com/in/calvinthomas						##offline(🔴)
 
-Main Algorithmic Design Documentation Pages Deployed//Published on Notion ((Pages)✅):
+Main Algorithmic Design Documentation Pages Deployed//Published as Website on Notion ((Pages)✅):
 
 Github (online 🟢):
 
