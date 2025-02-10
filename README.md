@@ -1,6 +1,6 @@
 README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 
-
+Unified Algo Design Doc(s) System - My IP proprietary total backtest simulation methodology; open-source channel distribution @((GH/LI/Insta//Fb)).
 
 BTSIM ((Satisfying 99% of ALLOC REQ's ✅))
 
