@@ -1,0 +1,1 @@
+![Algorithmic Design Documentation - Cross-Sectional Study - BTSIM Early Efficacy in total algorithmic complexity and loc's reduction!](https://github.com/user-attachments/assets/129ff459-5b1c-4fb2-a6d0-8c3c4656b348)
