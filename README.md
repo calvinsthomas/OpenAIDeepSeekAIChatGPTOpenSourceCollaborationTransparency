@@ -10,7 +10,7 @@ A comprehensive documentation framework that captures the complete backtesting m
 
 README OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency
 
-Unified Algo Design Doc(s) System ((open-source//closed-system)) - My IP proprietary total backtest simulation methodology; open-source channel distribution @((GH/LI/Insta//Fb)).
+Unified Algo Design Doc(s) System ((open-source//closed-system)) - My IP proprietary total backtest simulation methodology as I have sole-((access//control)); open-source channel distribution @((GH/LI/Insta//Fb)).
 
 BTSIM ((Satisfying 99% of ALLOC REQ's ✅))
 
