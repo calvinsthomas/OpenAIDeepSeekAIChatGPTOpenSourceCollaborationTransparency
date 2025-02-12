@@ -52,7 +52,7 @@ Code
 ```markdown
 ## License
 
-This project is NOLICENSE under my proprietary ((OSS//closed-system)) model - see the [LICENSE](LICENSE) file for details.
+This project is NOLICENSE under my proprietary ((OSS//closed-system)) model - see the [LICENSE](__LICENSE__/__LICENSEMAIN__.rst) file for details.
 Contact
 Markdown
 ## Contact
