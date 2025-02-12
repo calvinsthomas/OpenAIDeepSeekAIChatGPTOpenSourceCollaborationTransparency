@@ -52,7 +52,7 @@ Code
 ```markdown
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is NOLICENSE under my proprietary ((OSS//closed-system)) model - see the [LICENSE](LICENSE) file for details.
 Contact
 Markdown
 ## Contact
