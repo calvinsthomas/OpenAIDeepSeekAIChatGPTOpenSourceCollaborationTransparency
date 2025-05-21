@@ -20,8 +20,6 @@ BTSIM or prod-ready feature-eng. synth csv algo key 'cumulative_residuals' for .
 
 <img width="592" alt="Screen Shot 2025-02-08 at 12 18 17 PM" src="https://github.com/user-attachments/assets/b0447fc7-b84e-4bcb-b63d-0fe0c539725e" />
 
-#####241 clones, 924-plus views!
-
 BTSIM Early Efficacy in total algorithmic complexity and loc's reduction!
 
 ![Algorithmic Design Documentation - Cross-Sectional Study - BTSIM Early Efficacy in total algorithmic complexity and loc's reduction!](https://github.com/user-attachments/assets/c1e0fa22-1ef9-40d7-af95-e0bbef7a1126)
