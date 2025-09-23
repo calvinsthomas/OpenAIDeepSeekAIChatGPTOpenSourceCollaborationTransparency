@@ -1,0 +1,5 @@
+filename,extension,type,purpose
+ODOMETERFAKE_references,txt,text,URL references and links
+sample_data,csv,data,Sample CSV data file
+sample_config,xml,config,Sample XML configuration file
+data_template,xlsx,spreadsheet,Excel template file
