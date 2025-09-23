@@ -1,0 +1,1 @@
+https://github.com/calvinsthomas/OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency/discussions/9
