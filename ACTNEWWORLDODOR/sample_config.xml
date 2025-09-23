@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <settings>
+        <naming_convention>
+            <rule>use_underscore_for_file_names</rule>
+            <rule>include_file_extensions</rule>
+            <rule>descriptive_names_preferred</rule>
+        </naming_convention>
+        <file_types>
+            <data_files>
+                <csv>comma_separated_values</csv>
+                <xml>extensible_markup_language</xml>
+                <xlsx>excel_spreadsheet</xlsx>
+            </data_files>
+            <executable_files>
+                <python>py</python>
+                <javascript>js</javascript>
+                <shell>sh</shell>
+            </executable_files>
+        </file_types>
+    </settings>
+</configuration>
