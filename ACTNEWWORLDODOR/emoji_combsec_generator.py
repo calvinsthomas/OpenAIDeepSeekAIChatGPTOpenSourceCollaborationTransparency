@@ -179,35 +179,3 @@ class EmojiCombsecGenerator:
         return export_data
 
 
-def main():
-    """Demo/test function for the COMBSEC key generator"""
-    print("🌐 ACTNEWWORLDODOR - Emoji COMBSEC Key Generator")
-    print("=" * 50)
-    
-    # Initialize generator
-    generator = EmojiCombsecGenerator()
-    
-    # Generate single key
-    key = generator.generate_combsec_key()
-    print(f"Generated Key: {key}")
-    
-    # Validate the key
-    validation = generator.validate_combsec_key(key)
-    print(f"Validation Result: {json.dumps(validation, indent=2)}")
-    
-    # Generate batch
-    print("\n🔄 Generating key batch...")
-    batch_keys = generator.generate_key_batch(5)
-    for i, batch_key in enumerate(batch_keys, 1):
-        print(f"Key {i}: {batch_key}")
-    
-    # Export data
-    export_data = generator.export_key_data(batch_keys)
-    print(f"\n📊 Export Summary:")
-    print(f"Total Keys: {export_data['total_keys']}")
-    print(f"Base Emoji: {export_data['base_emoji']}")
-    print(f"Unicode: {export_data['unicode_codepoint']}")
-
-
-if __name__ == "__main__":
-    main()
