@@ -54,6 +54,31 @@ def authenticate_colab_session():
 **Protocol:** Ethereum smart contract deployment
 **Contract Address:** To be deployed on mainnet
 
+#### 6. QXR Social Media Integration
+**Connection:** Automated research-to-social media pipeline
+**Protocol:** Notebook processing with COMBSEC authentication
+**Implementation:**
+```python
+# QXR social media integration
+from QXR.social_media_engine import SocialMediaEngine
+from QXR.notebook_to_social import NotebookProcessor
+
+def qxr_social_publish(notebook_path):
+    processor = NotebookProcessor(notebook_path)
+    engine = SocialMediaEngine("QXR")
+    
+    research_data = processor.extract_research_metrics()
+    master_file, posts = engine.one_push_manual_prepare(research_data)
+    
+    return master_file, posts
+```
+
+**Features:**
+- ETH liquidity research automation
+- Multi-platform content generation
+- COMBSEC-verified social posts
+- One-push manual posting workflow
+
 ### API Endpoints
 
 #### Key Generation Endpoint
@@ -141,8 +166,11 @@ python3 ACTNEWWORLDODOR/tests/test_oss_integration.py
 # Test email automation
 python3 ACTNEWWORLDODOR/tests/test_email_integration.py
 
-# Test Colab authentication
-python3 ACTNEWWORLDODOR/tests/test_colab_auth.py
+# Test QXR social media integration
+python3 QXR/test_social_integration.py
+
+# Test QXR main workflow
+python3 QXR/qxr_main.py --test
 ```
 
 ### Deployment Checklist
@@ -157,6 +185,9 @@ python3 ACTNEWWORLDODOR/tests/test_colab_auth.py
 - [ ] Deploy smart contract (if required)
 - [ ] Update Notion page webhooks
 - [ ] Configure monitoring and logging
+- [ ] Test QXR social media integration
+- [ ] Validate ETHLIQENGDOTIPYNBNTBK notebook processing
+- [ ] Verify multi-platform post generation
 
 ### Monitoring & Maintenance
 
