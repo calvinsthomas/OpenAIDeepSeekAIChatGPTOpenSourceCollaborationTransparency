@@ -1,0 +1,66 @@
+# File Organization and Naming Convention .gitignore
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Files without proper extensions (force explicit naming)
+# Uncomment the following line to enforce file extensions
+# *
+
+# Build artifacts
+build/
+dist/
+*.log
+*.cache
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# OS-specific files
+.DS_Store
+desktop.ini
+*.lnk
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.pyc
+*.pyo
+__pycache__/
+*.class
+*.o
+*.exe
+
+# Data files that should be tracked
+!*.csv
+!*.xml
+!*.xlsx
+!*.json
+!*.yaml
+!*.yml
+
+# Documentation that should be tracked
+!*.md
+!*.rst
+!*.txt
+
+# Configuration files that should be tracked
+!*.conf
+!*.config
+!*.ini
+
+# Example files and templates
+!sample_*
+!template_*
+!example_*
