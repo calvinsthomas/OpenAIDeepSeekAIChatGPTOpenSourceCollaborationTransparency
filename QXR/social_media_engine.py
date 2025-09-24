@@ -101,6 +101,45 @@ class SocialMediaEngine:
         os.environ['QXR_SOCIAL_COMBSEC_KEY'] = self.session_key
         return self.session_key
     
+    def _sanitize_numeric_value(self, value, default=0):
+        """
+        Sanitize numeric values to handle edge cases like inf, nan, and invalid types
+        
+        Args:
+            value: Input value to sanitize
+            default: Default value to use if sanitization fails
+            
+        Returns:
+            Sanitized numeric value
+        """
+        try:
+            # Handle None
+            if value is None:
+                return default
+                
+            # Convert to float first
+            if isinstance(value, str):
+                # Try to convert string to number
+                try:
+                    value = float(value)
+                except (ValueError, TypeError):
+                    return default
+            
+            # Handle inf and nan
+            if isinstance(value, (int, float)):
+                if value == float('inf') or value == float('-inf'):
+                    return 999999999 if value == float('inf') else -999999999
+                if value != value:  # Check for NaN
+                    return default
+                # Clamp extremely large values
+                if abs(value) > 1e15:
+                    return 1e15 if value > 0 else -1e15
+                return value
+            
+            return default
+        except:
+            return default
+    
     def generate_research_post(self, research_data: Dict) -> PostContent:
         """
         Generate social media post content from research data
@@ -111,25 +150,58 @@ class SocialMediaEngine:
         Returns:
             PostContent object ready for posting
         """
-        # Extract key metrics from research data
-        signals = research_data.get('signals', 0)
-        opportunities = research_data.get('opportunities', 0)
-        signal_strength = research_data.get('signal_strength', 0)
-        price_range = research_data.get('price_range', [0, 0])
-        max_liquidity = research_data.get('max_liquidity', 0)
+        # Safely extract and sanitize key metrics from research data
+        signals = self._sanitize_numeric_value(research_data.get('signals', 0), 0)
+        opportunities = self._sanitize_numeric_value(research_data.get('opportunities', 0), 0)
+        signal_strength = self._sanitize_numeric_value(research_data.get('signal_strength', 0), 0.0)
+        max_liquidity = self._sanitize_numeric_value(research_data.get('max_liquidity', 0), 0)
         
-        # Create post content
+        # Handle price range safely
+        price_range = research_data.get('price_range', [0, 0])
+        if not isinstance(price_range, (list, tuple)) or len(price_range) < 2:
+            price_range = [0, 0]
+        
+        price_low = self._sanitize_numeric_value(price_range[0], 0)
+        price_high = self._sanitize_numeric_value(price_range[1], 0)
+        
+        # Extract custom strategy or notes with unicode support
+        strategy = research_data.get('strategy', '')
+        notes = research_data.get('notes', '')
+        custom_content = ""
+        
+        # Include custom strategy if present
+        if strategy and strategy != 'Statistical Arbitrage':
+            custom_content += f"\n• Strategy: {strategy}"
+        
+        # Include notes if present  
+        if notes:
+            custom_content += f"\n• Notes: {notes}"
+        
+        # Ensure session key is available
+        session_key_display = self.session_key[:20] if self.session_key else "UNAVAILABLE"
+        
+        # Create post content with safe formatting
         title = "🌐 QXR ETH Liquidity Research Update"
         
-        content = f"""📊 Latest Statistical Arbitrage Analysis:
-• Total signals: {signals}
-• Recent opportunities: {opportunities}
-• Avg signal strength: {signal_strength:.3f}
+        try:
+            content = f"""📊 Latest Statistical Arbitrage Analysis:
+• Total signals: {int(signals)}
+• Recent opportunities: {int(opportunities)}
+• Avg signal strength: {signal_strength:.3f}{custom_content}
 
-💡 ETH Price Range: ${price_range[0]:.0f} - ${price_range[1]:.0f}
+💡 ETH Price Range: ${price_low:.0f} - ${price_high:.0f}
 📈 Max Liquidity: ${max_liquidity:.0f}
 
-🔐 Verified with COMBSEC: {self.session_key[:20]}...
+🔐 Verified with COMBSEC: {session_key_display}...
+Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
+        except Exception as e:
+            # Fallback content if formatting fails
+            content = f"""📊 Latest Statistical Arbitrage Analysis:
+• Total signals: {signals}
+• Recent opportunities: {opportunities}
+• Signal data processing completed{custom_content}
+
+🔐 Verified with COMBSEC: {session_key_display}...
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
 
         hashtags = [
@@ -142,7 +214,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
             content=content,
             hashtags=hashtags,
             research_data=research_data,
-            combsec_key=self.session_key
+            combsec_key=self.session_key or "FALLBACK_KEY"
         )
     
     def format_for_platform(self, post: PostContent, platform_name: str) -> str:
@@ -160,19 +232,62 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
         if not platform:
             raise ValueError(f"Unsupported platform: {platform_name}")
         
+        # Handle edge cases with empty or None content
+        title = post.title if post.title else "🌐 QXR Research Update"
+        content = post.content if post.content else "Research data processing completed."
+        
         # Start with title and content
-        formatted_content = f"{post.title}\n\n{post.content}"
+        formatted_content = f"{title}\n\n{content}"
         
         # Add hashtags if supported
         if platform.hashtag_support and post.hashtags:
             hashtag_string = ' '.join(post.hashtags)
             formatted_content = f"{formatted_content}\n\n{hashtag_string}"
         
-        # Truncate if necessary
+        # Always include COMBSEC reference if available
+        if post.combsec_key and post.combsec_key != "FALLBACK_KEY":
+            if "COMBSEC:" not in formatted_content:
+                formatted_content += f"\n\n🔐 Verified with COMBSEC: {post.combsec_key[:20]}..."
+        
+        # Ensure we have some content even if everything was empty
+        if not formatted_content.strip():
+            formatted_content = f"🌐 QXR Research Update\n\nData processing completed.\n\n🔐 Session verified"
+        
+        # Truncate if necessary but preserve key information
         if len(formatted_content) > platform.max_length:
-            # Smart truncation preserving key information
-            truncation_point = platform.max_length - 50
-            formatted_content = formatted_content[:truncation_point] + "...\n\n🔗 Full report in comments"
+            # Smart truncation preserving COMBSEC reference
+            combsec_line = "🔐 Verified with COMBSEC:"
+            combsec_idx = formatted_content.find(combsec_line)
+            
+            if combsec_idx >= 0:
+                # Extract COMBSEC line and what follows
+                combsec_part = formatted_content[combsec_idx:]
+                before_combsec = formatted_content[:combsec_idx].rstrip()
+                
+                # Calculate space needed for COMBSEC part (limit to reasonable length)
+                combsec_part_lines = combsec_part.split('\n')
+                essential_combsec = combsec_part_lines[0]  # Just the COMBSEC line
+                if len(combsec_part_lines) > 1:
+                    essential_combsec += '\n' + combsec_part_lines[1]  # And timestamp if present
+                
+                # Calculate available space for main content
+                footer = "\n\n🔗 More details..."
+                space_for_content = platform.max_length - len(essential_combsec) - len(footer)
+                
+                if len(before_combsec) > space_for_content:
+                    # Truncate main content but preserve structure
+                    truncated_content = before_combsec[:space_for_content - 3] + "..."
+                    formatted_content = truncated_content + '\n\n' + essential_combsec
+                else:
+                    # Content fits with COMBSEC, just use essential parts
+                    formatted_content = before_combsec + '\n\n' + essential_combsec
+            else:
+                # No COMBSEC found, standard truncation
+                formatted_content = formatted_content[:platform.max_length - 20] + "...\n\n🔗 More"
+            
+            # Final length check
+            if len(formatted_content) > platform.max_length:
+                formatted_content = formatted_content[:platform.max_length - 3] + "..."
         
         return formatted_content
     
