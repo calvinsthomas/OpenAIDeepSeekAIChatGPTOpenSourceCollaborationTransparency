@@ -2,6 +2,7 @@
 """
 QXR Social Media Integration Tests
 Comprehensive test suite for the social media posting functionality
+Enhanced with Notion page generation and Backtest Sim Landing Page tests
 """
 
 import sys
@@ -19,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Import modules to test
 from social_media_engine import SocialMediaEngine, PostContent, SocialPlatform
 from notebook_to_social import NotebookProcessor
+from notion_page_generator import NotionPageGenerator, BacktestResult
 
 
 class TestSocialMediaEngine(unittest.TestCase):
@@ -295,6 +297,302 @@ class TestIntegration(unittest.TestCase):
         self.assertIn(session_key[:20], linkedin_content)
 
 
+class TestNotionPageGenerator(unittest.TestCase):
+    """Test the Notion page generation functionality"""
+    
+    def setUp(self):
+        """Set up test fixtures"""
+        self.generator = NotionPageGenerator("TESTFIRM")
+        self.sample_research_data = {
+            'signals': 45,
+            'opportunities': 8,
+            'signal_strength': 1.247,
+            'price_range': [3420, 3580],
+            'max_liquidity': 12500000,
+            'strategy': 'ETH Statistical Arbitrage',
+            'timeframe': '24h'
+        }
+    
+    def test_generator_initialization(self):
+        """Test proper generator initialization"""
+        self.assertEqual(self.generator.firm_id, "TESTFIRM")
+        self.assertIsNotNone(self.generator.session_key)
+        self.assertTrue(self.generator.session_key.startswith("🌐"))
+        
+        # Test NEWWORLDODOR context
+        self.assertEqual(self.generator.newworldodor_context['system_id'], 'ACTNEWWORLDODOR')
+        self.assertEqual(self.generator.newworldodor_context['security_level'], 'HIGH_PRIORITY')
+        self.assertTrue(self.generator.newworldodor_context['allocator_access'])
+    
+    def test_allocator_access_setup(self):
+        """Test allocator access configuration"""
+        allocators = self.generator.allocator_configs
+        
+        self.assertIsInstance(allocators, dict)
+        self.assertGreater(len(allocators), 0)
+        
+        # Test primary allocator (Calvin Thomas)
+        self.assertIn('primary_allocator', allocators)
+        primary = allocators['primary_allocator']
+        self.assertEqual(primary['name'], 'Calvin Thomas')
+        self.assertEqual(primary['role'], 'System Architect')
+        self.assertTrue(primary['combsec_verified'])
+        self.assertIn('admin', primary['permissions'])
+        
+        # Test other allocators have limited permissions
+        for allocator_id, config in allocators.items():
+            if allocator_id != 'primary_allocator':
+                self.assertNotIn('admin', config['permissions'])
+                self.assertFalse(config['combsec_verified'])
+    
+    def test_backtest_results_creation(self):
+        """Test creation of backtest results from research data"""
+        backtest_results = self.generator._create_backtest_results(self.sample_research_data)
+        
+        self.assertIsInstance(backtest_results, BacktestResult)
+        self.assertEqual(backtest_results.strategy_name, "ETH Statistical Arbitrage")
+        
+        # Test performance metrics are within reasonable ranges
+        self.assertGreaterEqual(backtest_results.total_return, 5.0)
+        self.assertLessEqual(backtest_results.total_return, 10.0)  # Journal of Financial Economics range
+        self.assertGreater(backtest_results.sharpe_ratio, 0)
+        self.assertGreater(backtest_results.win_rate, 0)
+        self.assertLess(backtest_results.win_rate, 1)
+        self.assertTrue(backtest_results.peer_review_validation)
+    
+    def test_landing_page_generation(self):
+        """Test comprehensive landing page generation"""
+        page_data = self.generator.generate_backtest_sim_landing_page(self.sample_research_data)
+        
+        self.assertIsInstance(page_data, dict)
+        self.assertIn('page_template', page_data)
+        self.assertIn('backtest_results', page_data)
+        self.assertIn('combsec_key', page_data)
+        self.assertIn('allocator_access', page_data)
+        self.assertIn('generation_timestamp', page_data)
+        
+        # Test page template properties
+        template = page_data['page_template']
+        self.assertEqual(template.title, 'QXR Backtest Sim Main Landing Page')
+        self.assertEqual(template.page_type, 'comprehensive_trading_system')
+        self.assertIn('VERY_IMPORTANT', template.tags)
+        self.assertIn('NEWWORLDODOR', template.tags)
+        self.assertIn('StatArb', template.tags)
+        
+        # Test content blocks
+        self.assertGreater(len(template.content_blocks), 5)
+        
+        # Find and test key blocks
+        has_performance_table = any(block.get('type') == 'table' for block in template.content_blocks)
+        has_ai_workflow = any('AI WORKFLOW ACTIVE' in str(block.get('content', '')) for block in template.content_blocks)
+        has_security_context = any('NEWWORLDODOR' in str(block.get('content', '')) for block in template.content_blocks)
+        
+        self.assertTrue(has_performance_table)
+        self.assertTrue(has_ai_workflow)
+        self.assertTrue(has_security_context)
+    
+    def test_performance_table_generation(self):
+        """Test performance metrics table generation"""
+        backtest_results = self.generator._create_backtest_results(self.sample_research_data)
+        table_data = self.generator._generate_performance_table(backtest_results)
+        
+        self.assertIsInstance(table_data, list)
+        self.assertGreater(len(table_data), 1)  # Header + data rows
+        
+        # Test header row
+        self.assertEqual(table_data[0], ['Metric', 'Value', 'Peer Review Benchmark'])
+        
+        # Test data contains key metrics
+        table_str = str(table_data)
+        self.assertIn('Total Return', table_str)
+        self.assertIn('Sharpe Ratio', table_str)
+        self.assertIn('Max Drawdown', table_str)
+        self.assertIn('JFE Studies', table_str)  # Journal of Financial Economics reference
+    
+    def test_allocator_table_generation(self):
+        """Test allocator access table generation"""
+        table_data = self.generator._generate_allocator_table()
+        
+        self.assertIsInstance(table_data, list)
+        self.assertGreater(len(table_data), 1)  # Header + allocator rows
+        
+        # Test header row
+        self.assertEqual(table_data[0], ['Allocator', 'Role', 'Permissions', 'COMBSEC Verified'])
+        
+        # Test Calvin Thomas appears as verified
+        table_str = str(table_data)
+        self.assertIn('Calvin Thomas', table_str)
+        self.assertIn('System Architect', table_str)
+        self.assertIn('✅', table_str)  # Verified marker
+        
+        # Test other allocators appear as pending
+        self.assertIn('⚠️ Pending', table_str)
+    
+    def test_security_context_integration(self):
+        """Test NEWWORLDODOR security context integration"""
+        template = self.generator._create_landing_page_template(
+            self.generator._create_backtest_results(self.sample_research_data),
+            self.sample_research_data
+        )
+        
+        template_with_security = self.generator._add_security_context(template)
+        
+        self.assertEqual(template_with_security.properties['newworldodor_system'], 'ACTNEWWORLDODOR')
+        self.assertEqual(template_with_security.properties['security_protocol'], 'COMBSEC_U1F310')
+        self.assertEqual(template_with_security.properties['priority_level'], 'HIGH_PRIORITY')
+    
+    def test_ai_workflow_indicators(self):
+        """Test AI-driven workflow automation indicators"""
+        template = self.generator._create_landing_page_template(
+            self.generator._create_backtest_results(self.sample_research_data),
+            self.sample_research_data
+        )
+        
+        template_with_ai = self.generator._add_ai_workflow_indicators(template)
+        
+        self.assertIn('AI_AUTOMATED', template_with_ai.tags)
+        self.assertTrue(template_with_ai.properties['ai_workflow_enabled'])
+        
+        # Test AI workflow callout is added
+        ai_blocks = [block for block in template_with_ai.content_blocks 
+                    if 'AI WORKFLOW ACTIVE' in str(block.get('content', ''))]
+        self.assertGreater(len(ai_blocks), 0)
+        
+        # Test McKinsey study reference
+        ai_content = str(template_with_ai.content_blocks)
+        self.assertIn('McKinsey 2025', ai_content)
+        self.assertIn('30% productivity', ai_content)
+    
+    def test_notion_markdown_generation(self):
+        """Test Notion-compatible markdown generation"""
+        page_data = self.generator.generate_backtest_sim_landing_page(self.sample_research_data)
+        markdown_content = self.generator.generate_notion_markdown(page_data)
+        
+        self.assertIsInstance(markdown_content, str)
+        self.assertGreater(len(markdown_content), 1000)  # Should be comprehensive
+        
+        # Test key sections are present
+        self.assertIn('# QXR Backtest Sim Main Landing Page', markdown_content)
+        self.assertIn('🚨 **VERY IMPORTANT**', markdown_content)
+        self.assertIn('## 📊 Statistical Arbitrage Performance Summary', markdown_content)
+        self.assertIn('## 🔬 Peer-Reviewed Validation', markdown_content)
+        self.assertIn('## 🔐 NEWWORLDODOR Security Context', markdown_content)
+        self.assertIn('## 🤖 AI-Driven Workflow Automation', markdown_content)
+        self.assertIn('## 👥 Multi-Allocator Shared Access', markdown_content)
+        
+        # Test COMBSEC key inclusion
+        self.assertIn('COMBSEC Key:', markdown_content)
+        self.assertIn('🌐-', markdown_content)
+        
+        # Test allocator table
+        self.assertIn('Calvin Thomas', markdown_content)
+        self.assertIn('System Architect', markdown_content)
+        
+        # Test peer review references
+        self.assertIn('Journal of Financial Economics', markdown_content)
+        self.assertIn('5-10%', markdown_content)
+    
+    def test_page_spec_saving(self):
+        """Test saving page specification to file"""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            page_data = self.generator.generate_backtest_sim_landing_page(self.sample_research_data)
+            spec_file = self.generator.save_notion_page_spec(page_data, temp_dir)
+            
+            self.assertTrue(os.path.exists(spec_file))
+            self.assertTrue(spec_file.endswith('.json'))
+            
+            # Test file content
+            with open(spec_file, 'r') as f:
+                spec_data = json.load(f)
+            
+            self.assertIn('metadata', spec_data)
+            self.assertIn('page_template', spec_data)
+            self.assertIn('backtest_results', spec_data)
+            self.assertIn('allocator_access', spec_data)
+            self.assertIn('implementation_notes', spec_data)
+            
+            # Test metadata
+            self.assertEqual(spec_data['metadata']['priority'], 'VERY_IMPORTANT')
+            self.assertEqual(spec_data['metadata']['context'], 'NEWWORLDODOR')
+            
+            # Test implementation notes
+            self.assertIn('notion_api_version', spec_data['implementation_notes'])
+            self.assertIn('required_permissions', spec_data['implementation_notes'])
+            self.assertIn('security_notes', spec_data['implementation_notes'])
+
+
+class TestEnhancedSocialMediaEngine(unittest.TestCase):
+    """Test the enhanced social media engine with Notion page generation"""
+    
+    def setUp(self):
+        """Set up test fixtures"""
+        self.engine = SocialMediaEngine("TESTENHANCED")
+        self.sample_research_data = {
+            'signals': 45,
+            'opportunities': 8,
+            'signal_strength': 1.247,
+            'price_range': [3420, 3580],
+            'max_liquidity': 12500000,
+            'strategy': 'ETH Statistical Arbitrage',
+            'timeframe': '24h'
+        }
+    
+    def test_enhanced_engine_initialization(self):
+        """Test enhanced engine initialization with Notion generator"""
+        self.assertIsNotNone(self.engine.notion_generator)
+        self.assertIsInstance(self.engine.notion_generator, NotionPageGenerator)
+        self.assertEqual(self.engine.notion_generator.firm_id, "TESTENHANCED")
+    
+    def test_notion_landing_page_integration(self):
+        """Test Notion landing page integration in one-push workflow"""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            # Override save method to use temp directory
+            original_save = self.engine.save_posts_for_manual_publishing
+            
+            def mock_save(posts):
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                master_file = os.path.join(temp_dir, f"test_posts_{timestamp}.md")
+                return master_file
+            
+            self.engine.save_posts_for_manual_publishing = mock_save
+            
+            # Test with Notion in target platforms
+            master_file, posts = self.engine.one_push_manual_prepare(
+                self.sample_research_data,
+                target_platforms=['linkedin', 'notion']
+            )
+            
+            self.assertIn('notion', posts)
+            self.assertIn('linkedin', posts)
+            
+            # Test Notion content is comprehensive (landing page, not simple post)
+            notion_content = posts['notion']
+            self.assertIn('# QXR Backtest Sim Main Landing Page', notion_content)
+            self.assertIn('🚨 **VERY IMPORTANT**', notion_content)
+            self.assertIn('Statistical Arbitrage Performance Summary', notion_content)
+            self.assertIn('NEWWORLDODOR Security Context', notion_content)
+            self.assertIn('Multi-Allocator Shared Access', notion_content)
+            self.assertIn('Calvin Thomas', notion_content)
+            
+            # Test history includes landing page information
+            self.assertGreater(len(self.engine.post_history), 0)
+            last_entry = self.engine.post_history[-1]
+            if 'notion_landing_page' in last_entry:
+                self.assertTrue(last_entry['notion_landing_page']['has_backtest_sim'])
+                self.assertGreater(last_entry['notion_landing_page']['allocator_count'], 0)
+    
+    def test_enhanced_posting_instructions(self):
+        """Test enhanced posting instructions include Notion landing page info"""
+        instructions = self.engine.get_posting_instructions()
+        
+        self.assertIn('BACKTEST SIM LANDING PAGE', instructions)
+        self.assertIn('VERY IMPORTANT', instructions)
+        self.assertIn('Journal of Financial Economics', instructions)
+        self.assertIn('NEWWORLDODOR', instructions)
+        self.assertIn('allocator permissions', instructions)
+        self.assertIn('AI-driven workflow', instructions)
+
+
 def run_comprehensive_tests():
     """Run all tests with detailed output"""
     print("🌐 QXR Social Media Integration - Comprehensive Test Suite")
@@ -307,6 +605,8 @@ def run_comprehensive_tests():
     suite.addTest(unittest.makeSuite(TestSocialMediaEngine))
     suite.addTest(unittest.makeSuite(TestNotebookProcessor))
     suite.addTest(unittest.makeSuite(TestIntegration))
+    suite.addTest(unittest.makeSuite(TestNotionPageGenerator))
+    suite.addTest(unittest.makeSuite(TestEnhancedSocialMediaEngine))
     
     # Run tests with detailed output
     runner = unittest.TextTestRunner(verbosity=2, stream=sys.stdout)
