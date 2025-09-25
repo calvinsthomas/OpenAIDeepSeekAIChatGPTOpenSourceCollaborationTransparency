@@ -5,6 +5,7 @@ One-Push Manual Social Media Posting System
 
 This module integrates with the ACTNEWWORLDODOR COMBSEC system to provide
 secure, authenticated social media posting for quantitative research results.
+Enhanced with Notion webpage publishing for Backtest Sim Landing Pages.
 """
 
 import os
@@ -20,6 +21,9 @@ from urllib.parse import urlencode
 # Import ACTNEWWORLDODOR COMBSEC system
 sys.path.append('../ACTNEWWORLDODOR')
 from emoji_combsec_generator import EmojiCombsecGenerator
+
+# Import Notion page generation functionality
+from notion_page_generator import NotionPageGenerator
 
 
 @dataclass
@@ -57,6 +61,9 @@ class SocialMediaEngine:
         self.firm_id = firm_id
         self.combsec_generator = EmojiCombsecGenerator(firm_id)
         self.session_key = self.combsec_generator.generate_combsec_key()
+        
+        # Initialize Notion page generator for comprehensive webpage publishing
+        self.notion_generator = NotionPageGenerator(firm_id)
         
         # Define supported platforms
         self.platforms = {
@@ -242,7 +249,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
     def one_push_manual_prepare(self, research_data: Dict, 
                                target_platforms: Optional[List[str]] = None) -> Tuple[str, Dict[str, str]]:
         """
-        One-push preparation for manual social media posting
+        One-push preparation for manual social media posting with Backtest Sim Landing Page
         
         Args:
             research_data: Research results to post
@@ -261,20 +268,54 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
         # Prepare posts for all platforms
         formatted_posts = self.prepare_manual_post(research_data, target_platforms)
         
+        # Generate Backtest Sim Landing Page for Notion if Notion is in target platforms
+        notion_landing_page = None
+        if 'notion' in target_platforms:
+            print("📄 Generating Backtest Sim Main Landing Page for Notion...")
+            landing_page_data = self.notion_generator.generate_backtest_sim_landing_page(research_data)
+            
+            # Save comprehensive Notion page specification
+            spec_file = self.notion_generator.save_notion_page_spec(landing_page_data)
+            
+            # Generate Notion-compatible markdown
+            notion_markdown = self.notion_generator.generate_notion_markdown(landing_page_data)
+            
+            # Replace simple Notion post with comprehensive landing page
+            formatted_posts['notion'] = notion_markdown
+            
+            notion_landing_page = {
+                'spec_file': spec_file,
+                'landing_page_data': landing_page_data,
+                'markdown_content': notion_markdown
+            }
+            
+            print("✅ Backtest Sim Landing Page generated successfully")
+            print(f"📊 Performance: {landing_page_data['backtest_results'].total_return:.2f}% return")
+            print(f"👥 Allocators: {len(landing_page_data['allocator_access'])} configured")
+        
         # Save to files for manual publishing
         master_file = self.save_posts_for_manual_publishing(formatted_posts)
         
         print(f"✅ Posts prepared and saved to: {master_file}")
         print(f"📝 Generated {len(formatted_posts)} platform-specific posts")
         
-        # Store in history
-        self.post_history.append({
+        # Store in history with landing page data
+        history_entry = {
             'timestamp': datetime.now().isoformat(),
             'platforms': target_platforms,
             'master_file': master_file,
             'combsec_key': self.session_key,
             'research_data': research_data
-        })
+        }
+        
+        if notion_landing_page:
+            history_entry['notion_landing_page'] = {
+                'spec_file': notion_landing_page['spec_file'],
+                'has_backtest_sim': True,
+                'allocator_count': len(notion_landing_page['landing_page_data']['allocator_access'])
+            }
+        
+        self.post_history.append(history_entry)
         
         return master_file, formatted_posts
     
@@ -291,26 +332,37 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"""
    - LinkedIn: Professional tone, full content
    - Twitter: Concise version, thread if needed  
    - GitHub: Technical focus, link to repo
-   - Notion: Detailed analysis, embedded charts
+   - Notion: **BACKTEST SIM LANDING PAGE** - Comprehensive trading system documentation
 
-3. MANUAL POSTING PROCESS:
+3. NOTION BACKTEST SIM LANDING PAGE:
+   - **VERY IMPORTANT**: Creates comprehensive quantitative trading system webpage
+   - Includes peer-reviewed validation (Journal of Financial Economics)
+   - Multi-allocator shared access with NEWWORLDODOR security context
+   - AI-driven workflow automation indicators
+   - Statistical arbitrage performance metrics and risk analysis
+   - Import markdown directly or use JSON API specification
+
+4. MANUAL POSTING PROCESS:
    a) Copy content from generated files
    b) Login to each platform manually
    c) Paste formatted content
-   d) Add any platform-specific formatting
-   e) Schedule or publish immediately
-   f) Verify posts are live
+   d) **For Notion**: Import landing page markdown or use API spec
+   e) Configure allocator permissions as specified
+   f) Schedule or publish immediately
+   g) Verify posts are live
 
-4. VERIFICATION:
+5. VERIFICATION:
    - Check all links work
    - Verify hashtags display correctly
    - Confirm COMBSEC reference is included
+   - **Notion**: Verify allocator access controls
    - Monitor engagement metrics
 
-5. SECURITY:
+6. SECURITY:
    - Never share raw COMBSEC keys
    - Use truncated keys in public posts
    - Keep full session logs private
+   - **NEWWORLDODOR context**: Follow security protocols for shared spaces
         """
         return instructions
 
