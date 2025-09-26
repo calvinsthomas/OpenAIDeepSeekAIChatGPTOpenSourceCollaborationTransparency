@@ -51,10 +51,16 @@ QXR/
 ├── social_media_engine.py          # Core social media posting engine  
 ├── notebook_to_social.py           # Notebook data extraction
 ├── notion_page_generator.py        # NEW: Comprehensive Notion landing pages
+├── graphql_resolvers.py            # NEW: GraphQL API integration
 ├── qxr_main.py                     # Main execution script
 ├── test_social_integration.py      # Comprehensive test suite
 └── README.md                       # This documentation
 ```
+
+**NEW: GraphQL API Integration**
+- `@graphQL.ynl` - Complete GraphQL schema definition
+- `@GraphQL` - GraphQL configuration file
+- `graphql_resolvers.py` - COMBSEC authenticated resolvers
 
 ## Usage
 
@@ -96,10 +102,98 @@ python3 qxr_main.py --help
 # Run tests
 python3 qxr_main.py --test
 
+# Demo GraphQL API integration
+python3 qxr_main.py --graphql
+
 # Test individual components
 python3 social_media_engine.py      # Test engine
 python3 notebook_to_social.py       # Test notebook processing
+python3 graphql_resolvers.py        # Test GraphQL resolvers
 python3 test_social_integration.py  # Run full test suite
+```
+
+### GraphQL API Integration
+
+The QXR system now includes a comprehensive GraphQL API for programmatic access:
+
+**Schema Definition**: `@graphQL.ynl`
+**Configuration**: `@GraphQL`
+**Resolvers**: `QXR/graphql_resolvers.py`
+
+#### Key GraphQL Operations:
+
+```graphql
+# Generate COMBSEC authentication key
+mutation {
+  generateCombsecKey(firmId: "YOURFIRM") {
+    sessionKey
+    truncatedKey
+    verified
+    generatedAt
+  }
+}
+
+# Extract research metrics from notebook
+query {
+  extractNotebookMetrics(notebookPath: "/path/to/notebook.ipynb") {
+    signals
+    opportunities  
+    signalStrength
+    priceRange
+    maxLiquidity
+    strategy
+    timeframe
+  }
+}
+
+# Generate social media posts package
+mutation {
+  generateSocialMediaPackage(
+    researchData: {
+      signals: 45
+      opportunities: 8
+      signalStrength: 1.247
+      priceRange: [3420, 3580]
+      maxLiquidity: 12500000
+      strategy: "ETH Statistical Arbitrage"
+      timeframe: "24h"
+    }
+    options: {
+      targetPlatforms: ["linkedin", "twitter", "notion"]
+      firmId: "YOURFIRM"
+      includeNotionLanding: true
+    }
+    auth: {
+      sessionKey: "🌐-HEXKEY-TIMESTAMP-FIRMID"
+      firmId: "YOURFIRM"
+    }
+  ) {
+    masterFile
+    posts {
+      platform
+      content
+      hashtags
+      combsecKey
+      generatedAt
+    }
+    notionLandingPage {
+      specFile
+      markdownContent
+      apiSpec
+    }
+    instructions
+  }
+}
+
+# Monitor system health
+query {
+  systemHealth {
+    status
+    combsecActive
+    notionIntegration
+    socialMediaEngine
+  }
+}
 ```
 
 ## Research Notebook Integration
