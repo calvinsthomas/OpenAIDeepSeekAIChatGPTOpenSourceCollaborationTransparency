@@ -1,4 +1,5 @@
 # Security Policy
+<img width="437" height="35" alt="image" src="https://github.com/user-attachments/assets/c11068ff-e020-48e5-9881-43132daf715c" />
 
 ## Supported Versions
 
