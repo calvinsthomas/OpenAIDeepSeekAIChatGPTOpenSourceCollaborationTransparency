@@ -179,3 +179,24 @@ class EmojiCombsecGenerator:
         return export_data
 
 
+def generate_combsec_key_u1f310(firm_id: str, timestamp: int = None) -> str:
+    """
+    Generate COMBSEC key based on U+1F310 globe emoji
+    
+    This is the standardized API function as specified in the technical design document.
+    Provides a risk-free, reliable interface for COMBSEC key generation.
+    
+    Args:
+        firm_id: Unique firm identifier
+        timestamp: Optional timestamp (defaults to current time)
+    
+    Returns:
+        Formatted COMBSEC key string in format: 🌐-[HEXKEY]-[TIMESTAMP]-[FIRMID]
+    """
+    # Create a generator instance for this specific request
+    generator = EmojiCombsecGenerator(firm_id)
+    
+    # Generate and return the key using the existing implementation
+    return generator.generate_combsec_key(timestamp=timestamp)
+
+
