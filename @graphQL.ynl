@@ -1,0 +1,279 @@
+# QXR GraphQL Schema Definition - Quantitative Research & Social Media Integration
+# ACTNEWWORLDODOR COMBSEC Authenticated API Layer
+# File: @graphQL.ynl
+
+# Core Types
+type CombsecKey {
+  id: String!
+  sessionKey: String!
+  truncatedKey: String!
+  verified: Boolean!
+  generatedAt: String!
+  expiresAt: String
+}
+
+type ResearchMetrics {
+  signals: Int!
+  opportunities: Int!
+  signalStrength: Float!
+  priceRange: [Float!]!
+  maxLiquidity: Float!
+  strategy: String!
+  timeframe: String!
+  timestamp: String!
+}
+
+type BacktestResult {
+  totalReturn: Float!
+  sharpeRatio: Float!
+  maxDrawdown: Float!
+  winRate: Float!
+  volatility: Float!
+  alpha: Float
+  beta: Float
+  informationRatio: Float
+  performance: String!
+}
+
+type AllocatorConfig {
+  id: String!
+  name: String!
+  role: String!
+  permissions: [String!]!
+  combsecVerified: Boolean!
+  accessLevel: String!
+}
+
+type NotionPageTemplate {
+  id: String!
+  title: String!
+  priority: String!
+  context: String!
+  tags: [String!]!
+  properties: NotionProperties!
+  allocatorAccess: [AllocatorConfig!]!
+  securityLevel: String!
+}
+
+type NotionProperties {
+  newworldodorSystem: String
+  securityProtocol: String
+  priorityLevel: String
+  peerReviewed: Boolean
+  journalReference: String
+}
+
+type SocialMediaPost {
+  platform: String!
+  content: String!
+  hashtags: [String!]!
+  combsecKey: String!
+  generatedAt: String!
+}
+
+type SocialMediaPackage {
+  masterFile: String!
+  posts: [SocialMediaPost!]!
+  notionLandingPage: NotionLandingPage
+  instructions: String!
+}
+
+type NotionLandingPage {
+  specFile: String!
+  markdownContent: String!
+  landingPageData: NotionPageTemplate!
+  apiSpec: String!
+}
+
+# Input Types
+input ResearchDataInput {
+  signals: Int!
+  opportunities: Int!
+  signalStrength: Float!
+  priceRange: [Float!]!
+  maxLiquidity: Float!
+  strategy: String!
+  timeframe: String!
+}
+
+input SocialMediaOptionsInput {
+  targetPlatforms: [String!]!
+  firmId: String!
+  includeNotionLanding: Boolean = true
+}
+
+input NotionPageOptionsInput {
+  firmId: String!
+  includeAllocatorAccess: Boolean = true
+  securityLevel: String = "HIGH_PRIORITY"
+  enableAiWorkflow: Boolean = true
+}
+
+input CombsecAuthInput {
+  sessionKey: String
+  firmId: String!
+}
+
+# Queries
+type Query {
+  # COMBSEC Authentication
+  generateCombsecKey(firmId: String!): CombsecKey!
+  validateCombsecKey(sessionKey: String!): Boolean!
+  
+  # Research Data
+  extractNotebookMetrics(notebookPath: String!): ResearchMetrics!
+  getBacktestResults(researchData: ResearchDataInput!): BacktestResult!
+  
+  # Notion Integration  
+  generateNotionLandingPage(
+    researchData: ResearchDataInput!
+    options: NotionPageOptionsInput!
+  ): NotionLandingPage!
+  
+  # Social Media
+  prepareSocialMediaPosts(
+    researchData: ResearchDataInput!
+    options: SocialMediaOptionsInput!
+    auth: CombsecAuthInput!
+  ): SocialMediaPackage!
+  
+  # System Status
+  systemHealth: SystemHealth!
+  integrationStatus: IntegrationStatus!
+}
+
+# Mutations
+type Mutation {
+  # Research Processing
+  processNotebook(
+    notebookPath: String!
+    auth: CombsecAuthInput!
+  ): ResearchMetrics!
+  
+  # Social Media Generation
+  generateSocialMediaPackage(
+    researchData: ResearchDataInput!
+    options: SocialMediaOptionsInput!
+    auth: CombsecAuthInput!
+  ): SocialMediaPackage!
+  
+  # Notion Page Creation
+  createNotionLandingPage(
+    researchData: ResearchDataInput!
+    options: NotionPageOptionsInput!
+    auth: CombsecAuthInput!
+  ): NotionLandingPage!
+  
+  # COMBSEC Management
+  refreshCombsecKey(
+    currentKey: String!
+    firmId: String!
+  ): CombsecKey!
+  
+  # Allocator Management
+  configureAllocatorAccess(
+    allocatorId: String!
+    permissions: [String!]!
+    auth: CombsecAuthInput!
+  ): AllocatorConfig!
+}
+
+# Subscriptions for Real-time Updates
+type Subscription {
+  # Research Updates
+  researchMetricsUpdated(notebookPath: String!): ResearchMetrics!
+  
+  # Social Media Status
+  postingStatusUpdated(packageId: String!): PostingStatus!
+  
+  # Notion Page Updates
+  notionPageUpdated(pageId: String!): NotionPageStatus!
+  
+  # System Monitoring
+  systemHealthUpdated: SystemHealth!
+}
+
+# Additional Types for System Monitoring
+type SystemHealth {
+  status: String!
+  uptime: String!
+  lastUpdate: String!
+  combsecActive: Boolean!
+  notionIntegration: Boolean!
+  socialMediaEngine: Boolean!
+}
+
+type IntegrationStatus {
+  actnewworldodor: Boolean!
+  qxrNotebook: Boolean!
+  notionApi: Boolean!
+  socialPlatforms: [PlatformStatus!]!
+}
+
+type PlatformStatus {
+  platform: String!
+  available: Boolean!
+  lastSync: String
+}
+
+type PostingStatus {
+  packageId: String!
+  status: String!
+  platformsComplete: [String!]!
+  platformsPending: [String!]!
+  errors: [String!]
+}
+
+type NotionPageStatus {
+  pageId: String!
+  status: String!
+  url: String
+  lastUpdated: String!
+}
+
+# Custom Scalars
+scalar DateTime
+scalar JSON
+
+# Directives for Security
+directive @combsecAuth(
+  required: Boolean = true
+  level: String = "STANDARD"
+) on FIELD_DEFINITION
+
+directive @rateLimit(
+  max: Int!
+  window: Int!
+) on FIELD_DEFINITION
+
+# Schema Configuration
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+# API Documentation Extensions
+"""
+QXR GraphQL API - Quantitative Research Social Media Integration
+
+This GraphQL API provides programmatic access to the QXR system for:
+- COMBSEC authenticated operations
+- Research data processing from Jupyter notebooks  
+- Automated social media post generation
+- Notion landing page creation with allocator access
+- Real-time system monitoring and updates
+
+Security:
+- All operations require COMBSEC authentication
+- Rate limiting applied to prevent abuse
+- Truncated keys used in public responses
+- NEWWORLDODOR security protocol integration
+
+Usage:
+1. Generate COMBSEC key for authentication
+2. Process research notebook to extract metrics
+3. Generate social media posts for multiple platforms
+4. Create comprehensive Notion landing pages
+5. Monitor system health and integration status
+"""

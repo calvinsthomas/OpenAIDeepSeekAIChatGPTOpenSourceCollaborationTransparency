@@ -118,6 +118,7 @@ def show_help():
     print("  python3 qxr_main.py           - Run the integration")
     print("  python3 qxr_main.py --help    - Show this help")
     print("  python3 qxr_main.py --test    - Run tests")
+    print("  python3 qxr_main.py --graphql  - GraphQL API demo")
     print()
     print("Files generated:")
     print("  • Master markdown file with all platform posts")
@@ -149,6 +150,20 @@ def run_tests():
         return False
 
 
+def run_graphql_demo():
+    """Run GraphQL API demonstration"""
+    print("🌐 Running QXR GraphQL API Demo...")
+    print()
+    
+    try:
+        from graphql_resolvers import demo_graphql_integration
+        demo_graphql_integration()
+        return True
+    except ImportError as e:
+        print(f"❌ Error importing GraphQL resolvers: {e}")
+        return False
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == "--help" or sys.argv[1] == "-h":
@@ -156,6 +171,9 @@ if __name__ == "__main__":
             sys.exit(0)
         elif sys.argv[1] == "--test":
             success = run_tests()
+            sys.exit(0 if success else 1)
+        elif sys.argv[1] == "--graphql":
+            success = run_graphql_demo()
             sys.exit(0 if success else 1)
         else:
             print(f"Unknown argument: {sys.argv[1]}")

@@ -79,6 +79,42 @@ def qxr_social_publish(notebook_path):
 - COMBSEC-verified social posts
 - One-push manual posting workflow
 
+#### 7. GraphQL API Integration
+**Connection:** Programmatic access to QXR system functionality
+**Protocol:** GraphQL with COMBSEC authentication
+**Schema:** @graphQL.ynl
+**Implementation:**
+```python
+# GraphQL API integration
+from QXR.graphql_resolvers import GraphQLResolvers
+
+def graphql_api_handler():
+    resolvers = GraphQLResolvers()
+    
+    # Generate COMBSEC authenticated session
+    auth_key = resolvers.generate_combsec_key(None, "YOURFIRM")
+    
+    # Process research notebook via GraphQL
+    research_data = resolvers.extract_notebook_metrics(None, "path/to/notebook.ipynb")
+    
+    # Generate social media package
+    social_package = resolvers.prepare_social_media_posts(
+        None, research_data, 
+        {"target_platforms": ["linkedin", "twitter", "notion"], "firm_id": "YOURFIRM"},
+        {"session_key": auth_key["session_key"], "firm_id": "YOURFIRM"}
+    )
+    
+    return social_package
+```
+
+**Features:**
+- COMBSEC authenticated API access
+- Research data processing via GraphQL queries
+- Social media post generation via mutations
+- Notion landing page creation
+- Real-time system monitoring subscriptions
+- Comprehensive backtest result analysis
+
 ### API Endpoints
 
 #### Key Generation Endpoint
@@ -171,6 +207,9 @@ python3 QXR/test_social_integration.py
 
 # Test QXR main workflow
 python3 QXR/qxr_main.py --test
+
+# Test GraphQL API integration
+python3 QXR/graphql_resolvers.py
 ```
 
 ### Deployment Checklist
