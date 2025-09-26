@@ -10,7 +10,7 @@ import os
 # Add the ACTNEWWORLDODOR directory to the Python path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from emoji_combsec_generator import EmojiCombsecGenerator
+from emoji_combsec_generator import EmojiCombsecGenerator, generate_combsec_key_u1f310
 
 def test_key_generation():
     """Test basic key generation functionality"""
@@ -97,6 +97,37 @@ def test_invalid_key_handling():
     print("✅ Invalid key handling works correctly")
     return True
 
+def test_api_function_u1f310():
+    """Test the standardized API function generate_combsec_key_u1f310"""
+    print("🚀 Testing API function generate_combsec_key_u1f310...")
+    
+    # Test with default parameters (no timestamp)
+    key1 = generate_combsec_key_u1f310("APIFIRM")
+    
+    # Test with specific timestamp
+    test_timestamp = 1234567890
+    key2 = generate_combsec_key_u1f310("APIFIRM", test_timestamp)
+    
+    # Basic format validation
+    assert key1.startswith("🌐-"), f"Key 1 doesn't start with globe emoji: {key1}"
+    assert key2.startswith("🌐-"), f"Key 2 doesn't start with globe emoji: {key2}"
+    
+    # Validate using existing validator
+    generator = EmojiCombsecGenerator("APIFIRM")
+    validation1 = generator.validate_combsec_key(key1)
+    validation2 = generator.validate_combsec_key(key2)
+    
+    assert validation1["valid"] == True, "API function key 1 validation failed"
+    assert validation2["valid"] == True, "API function key 2 validation failed"
+    assert validation1["firm_id"] == "APIFIRM", "API function key 1 firm_id mismatch"
+    assert validation2["firm_id"] == "APIFIRM", "API function key 2 firm_id mismatch"
+    assert validation2["timestamp"] == test_timestamp, "API function key 2 timestamp mismatch"
+    
+    print(f"✅ API function test passed")
+    print(f"   Key 1 (auto timestamp): {key1}")
+    print(f"   Key 2 (fixed timestamp): {key2}")
+    return True
+
 def run_all_tests():
     """Run all validation tests"""
     print("🌐 ACTNEWWORLDODOR - COMBSEC Key Validation Tests")
@@ -108,6 +139,7 @@ def run_all_tests():
         test_key_validation,
         test_batch_generation,
         test_invalid_key_handling,
+        test_api_function_u1f310,
     ]
     
     passed = 0
@@ -131,3 +163,8 @@ def run_all_tests():
         print("💥 Some tests failed. Please review and fix issues.")
         return False
 
+
+if __name__ == "__main__":
+    # Run all tests
+    success = run_all_tests()
+    sys.exit(0 if success else 1)
