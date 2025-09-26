@@ -10,6 +10,7 @@ social media posts for manual publishing across multiple platforms.
 
 import sys
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -19,6 +20,15 @@ sys.path.insert(0, str(current_dir))
 
 from social_media_engine import SocialMediaEngine
 from notebook_to_social import NotebookProcessor
+
+# Import enhanced bridge integration
+try:
+    from qxr_bridge_integration import EnhancedSocialMediaEngine
+    BRIDGE_AVAILABLE = True
+    print("🚀 QXR Bridge integration loaded successfully")
+except ImportError:
+    BRIDGE_AVAILABLE = False
+    print("⚠️  Bridge integration not available, using standard engine")
 
 
 def main():
@@ -39,9 +49,15 @@ def main():
     
     print(f"📓 Processing notebook: {notebook_path}")
     
-    # Initialize processor and engine
+    # Initialize processor and engine with bridge if available
     processor = NotebookProcessor(str(notebook_path))
-    engine = SocialMediaEngine("QXR")
+    
+    if BRIDGE_AVAILABLE:
+        print("🚀 Using Enhanced Social Media Engine with Rust-C-Python Bridge")
+        engine = EnhancedSocialMediaEngine("QXR")
+    else:
+        print("📱 Using Standard Social Media Engine")
+        engine = SocialMediaEngine("QXR")
     
     # Extract research metrics from notebook
     print("🔍 Extracting research metrics...")
@@ -57,16 +73,37 @@ def main():
             print(f"   • {key.replace('_', ' ').title()}: {value}")
     
     print()
-    print("🔐 Initializing COMBSEC authentication...")
-    session_key = engine.authenticate_session()
-    print(f"✅ Authenticated with key: {session_key[:30]}...")
     
-    # Prepare social media posts
-    print()
-    print("📱 Preparing social media posts...")
-    
-    target_platforms = ['linkedin', 'twitter', 'github', 'notion']
-    master_file, posts = engine.one_push_manual_prepare(research_data, target_platforms)
+    # Process with enhanced engine if available
+    if BRIDGE_AVAILABLE and hasattr(engine, 'process_research_metrics'):
+        print("🚀 Processing with Enhanced Engine (Bridge)...")
+        start_time = time.time()
+        
+        results = engine.process_research_metrics(research_data)
+        processing_time = time.time() - start_time
+        
+        print(f"✅ Performance Score: {results['performance_score']:.2f}")
+        print(f"⏱️  Processing Time: {results['processing_time_ms']:.2f}ms")
+        print(f"🔧 Bridge Version: {results['bridge_info']['version']}")
+        
+        print()
+        print("📱 Preparing social media posts with bridge acceleration...")
+        
+        # Use enhanced one-push preparation
+        target_platforms = ['linkedin', 'twitter', 'github', 'notion']
+        master_file, posts = engine.one_push_manual_prepare(research_data, target_platforms)
+        
+    else:
+        print("🔐 Initializing COMBSEC authentication...")
+        session_key = engine.authenticate_session()
+        print(f"✅ Authenticated with key: {session_key[:30]}...")
+        
+        # Prepare social media posts
+        print()
+        print("📱 Preparing social media posts...")
+        
+        target_platforms = ['linkedin', 'twitter', 'github', 'notion']
+        master_file, posts = engine.one_push_manual_prepare(research_data, target_platforms)
     
     print()
     print("✅ Social media posts prepared successfully!")
