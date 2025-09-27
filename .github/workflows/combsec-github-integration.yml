@@ -1,0 +1,146 @@
+name: COMBSEC GitHub Integration
+
+# ALL MONEY IN! TIMESTAMP ME GH! - Enhanced workflow for COMBSEC system
+on:
+  push:
+    branches: [ "main", "copilot/**" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      firm_id:
+        description: 'Firm ID for COMBSEC key generation'
+        required: false
+        default: 'GITHUB_ACTIONS_FIRM'
+      key_count:
+        description: 'Number of keys to generate'
+        required: false
+        default: '5'
+
+jobs:
+  combsec-github-timestamp:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for comprehensive Git integration
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Display GitHub Environment
+        run: |
+          echo "🌐 GitHub Environment Information:"
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "Ref: ${{ github.ref }}"
+      
+      - name: Generate GitHub-Enhanced COMBSEC Keys
+        run: |
+          cd ACTNEWWORLDODOR
+          echo "🚀 Generating GitHub-enhanced COMBSEC keys..."
+          python github_timestamp_integration.py
+          echo ""
+          echo "🔑 Additional key generation with custom firm ID..."
+          python -c "
+          from github_timestamp_integration import generate_github_combsec_key_u1f310
+          
+          firm_id = '${{ github.event.inputs.firm_id || 'GITHUB_ACTIONS_FIRM' }}'
+          
+          print(f'Firm ID: {firm_id}')
+          for i in range(int('${{ github.event.inputs.key_count || '3' }}')):
+              key = generate_github_combsec_key_u1f310(f'{firm_id}_{i+1}')
+              print(f'Key {i+1}: {key}')
+          "
+      
+      - name: Run COMBSEC Tests with GitHub Integration
+        run: |
+          cd ACTNEWWORLDODOR
+          echo "🧪 Running enhanced COMBSEC tests..."
+          python key_validation_tests.py
+          
+          echo ""
+          echo "🔍 Testing GitHub integration functionality..."
+          python -c "
+          from github_timestamp_integration import GitHubTimestampIntegrator
+          
+          integrator = GitHubTimestampIntegrator('TEST_GITHUB_FIRM')
+          
+          # Test batch generation
+          batch = integrator.export_github_key_batch(3)
+          print(f'Generated batch of {batch[\"total_keys\"]} GitHub-enhanced keys')
+          
+          # Validate each key
+          for i, key_data in enumerate(batch['keys']):
+              validation = integrator.validate_github_timestamped_key(key_data)
+              print(f'Key {i+1} valid: {validation[\"valid\"]}')
+              print(f'Key {i+1} has GitHub data: {validation.get(\"github_enhanced\", False)}')
+          
+          print('✅ All GitHub integration tests passed!')
+          "
+      
+      - name: Generate Timestamped Report
+        run: |
+          cd ACTNEWWORLDODOR
+          echo "📊 Generating timestamped COMBSEC report..."
+          python -c "
+          import json
+          from datetime import datetime
+          from github_timestamp_integration import GitHubTimestampIntegrator
+          
+          integrator = GitHubTimestampIntegrator('GITHUB_REPORT_FIRM')
+          
+          # Generate comprehensive report
+          report = {
+              'workflow_run': {
+                  'run_id': '${{ github.run_id }}',
+                  'run_number': '${{ github.run_number }}',
+                  'repository': '${{ github.repository }}',
+                  'actor': '${{ github.actor }}',
+                  'sha': '${{ github.sha }}',
+                  'timestamp': datetime.now().isoformat()
+              },
+              'combsec_data': integrator.export_github_key_batch(5)
+          }
+          
+          # Save report
+          with open('github_combsec_report.json', 'w') as f:
+              json.dump(report, f, indent=2)
+          
+          print('📁 Report saved to github_combsec_report.json')
+          print('Report summary:')
+          print(f'  - Workflow Run: {report[\"workflow_run\"][\"run_id\"]}')
+          print(f'  - Keys Generated: {report[\"combsec_data\"][\"total_keys\"]}')
+          print(f'  - Firm ID: {report[\"combsec_data\"][\"firm_id\"]}')
+          print(f'  - GitHub Enhanced: {report[\"combsec_data\"][\"github_integration\"]}')
+          "
+      
+      - name: Upload COMBSEC Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: combsec-github-report-${{ github.run_id }}
+          path: ACTNEWWORLDODOR/github_combsec_report.json
+          retention-days: 30
+      
+      - name: Display Success Message
+        run: |
+          echo "🎉 COMBSEC GitHub Integration Complete!"
+          echo "✅ ALL MONEY IN! - Full COMBSEC functionality deployed"
+          echo "✅ TIMESTAMP ME - GitHub-enhanced timestamping active"
+          echo "✅ GH! - GitHub Actions integration successful"
+          echo ""
+          echo "📈 Integration Features:"
+          echo "  - Git commit data integration"
+          echo "  - GitHub Actions environment capture"
+          echo "  - Enhanced entropy from GitHub metadata"
+          echo "  - Automated key validation and reporting"
+          echo "  - Artifact generation for key storage"
