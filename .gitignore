@@ -233,4 +233,44 @@ __pycache__/
 !*_screenshot_*.png
 !demo_*.mp4
 !screen_recording_*.mp4
- main
+
+# Exclude unstructured screenshot files
+Screenshot*.png
+Screen Shot*.png
+*.jpg
+*.jpeg
+*.gif
+*.png
+*.bmp
+*.tiff
+*.webp
+
+# Exclude Word and PDF documents that are not properly named
+*.docx
+*.doc
+*.pdf
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# Allow properly named documentation
+!README*.md
+!INSTALL*.md
+!CHANGELOG*.md
+!LICENSE*.md
+!*_manual.pdf
+!*_guide.pdf
+!*_spec.pdf
+!technical_*.pdf
+
+# Exclude binary and archive files
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tgz
+
+# COMBSEC generated reports (allow tracking)
+!*combsec_report.json
+!github_combsec_report.json
