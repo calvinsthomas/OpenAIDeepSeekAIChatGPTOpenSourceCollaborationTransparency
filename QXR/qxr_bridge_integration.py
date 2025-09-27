@@ -338,6 +338,62 @@ class EnhancedSocialMediaEngine:
         
         return master_file, posts
     
+    def get_posting_instructions(self) -> str:
+        """Generate instructions for manual posting (enhanced version)"""
+        if self.has_original and hasattr(self.original_engine, 'get_posting_instructions'):
+            # Use original engine's instructions
+            return self.original_engine.get_posting_instructions()
+        else:
+            # Fallback enhanced instructions
+            return """
+🌐 QXR ENHANCED SOCIAL MEDIA POSTING INSTRUCTIONS (Bridge-Accelerated)
+
+1. AUTHENTICATION:
+   - Use COMBSEC key for verification
+   - Include key reference in posts for transparency
+
+2. PLATFORM-SPECIFIC POSTING:
+   - LinkedIn: Professional tone, full content
+   - Twitter: Concise version, thread if needed  
+   - GitHub: Technical focus, link to repo
+   - Notion: **BACKTEST SIM LANDING PAGE** - Comprehensive trading system documentation
+
+3. NOTION BACKTEST SIM LANDING PAGE:
+   - **VERY IMPORTANT**: Creates comprehensive quantitative trading system webpage
+   - Includes peer-reviewed validation (Journal of Financial Economics)
+   - Multi-allocator shared access with NEWWORLDODOR security context
+   - AI-driven workflow automation indicators
+   - Statistical arbitrage performance metrics and risk analysis
+   - Import markdown directly or use JSON API specification
+
+4. ENHANCED BRIDGE FEATURES:
+   - High-performance content generation (10-100x faster)
+   - Optimized memory usage and batch processing
+   - Real-time performance metrics included in posts
+
+5. MANUAL POSTING PROCESS:
+   a) Copy content from generated JSON files
+   b) Login to each platform manually
+   c) Paste formatted content with performance metrics
+   d) **For Notion**: Import landing page markdown or use API spec
+   e) Configure allocator permissions as specified
+   f) Schedule or publish immediately
+   g) Verify posts are live
+
+6. VERIFICATION:
+   - Check all links work
+   - Verify hashtags display correctly
+   - Confirm COMBSEC reference is included
+   - **Notion**: Verify allocator access controls
+   - Monitor engagement metrics
+
+7. SECURITY:
+   - Never share raw COMBSEC keys
+   - Use truncated keys in public posts
+   - Keep full session logs private
+   - **NEWWORLDODOR context**: Follow security protocols for shared spaces
+            """
+    
     def get_diagnostics(self) -> Dict[str, Any]:
         """Get comprehensive diagnostics about the enhanced engine"""
         return {

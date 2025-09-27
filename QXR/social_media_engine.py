@@ -19,7 +19,7 @@ import requests
 from urllib.parse import urlencode
 
 # Import ACTNEWWORLDODOR COMBSEC system
-sys.path.append('../ACTNEWWORLDODOR')
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ACTNEWWORLDODOR'))
 from emoji_combsec_generator import EmojiCombsecGenerator
 
 # Import Notion page generation functionality
