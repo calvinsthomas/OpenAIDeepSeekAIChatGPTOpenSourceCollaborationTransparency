@@ -1,3 +1,11 @@
+# OpenAI DeepSeek AI ChatGPT Open Source Collaboration Transparency
+
+## KOMPROMAT DEFINED MY IP METHODOLOGY
+
+```gmail
+GMAIL__URL_EMBED_ME()NOW!
+```
+
 https://github.com/calvinsthomas/OpenAIDeepSeekAIChatGPTOpenSourceCollaborationTransparency/discussions/9
 
 ## 📁 File Handling
