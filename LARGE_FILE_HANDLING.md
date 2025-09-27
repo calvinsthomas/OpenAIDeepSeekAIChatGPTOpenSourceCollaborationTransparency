@@ -58,7 +58,9 @@ If you encounter the "files that are this big" error on GitHub:
 
 ## Git LFS Setup
 
-To work with Git LFS files in this repository:
+**⚠️ CRITICAL REQUIREMENT**: Files configured for Git LFS **MUST be pushed using the Git command line** with Git LFS installed. Web interfaces cannot handle LFS files properly.
+
+### Quick Setup
 
 ```bash
 # Install Git LFS
@@ -70,6 +72,37 @@ git lfs clone <repository-url>
 # Or pull LFS files in existing clone
 git lfs pull
 ```
+
+### Working with LFS Files
+
+```bash
+# Add any PNG/PDF/DOCX file (automatically handled by LFS)
+git add screenshot_2025-09-27_demo.png
+
+# Commit normally
+git commit -m "Add screenshot"
+
+# Push using command line (REQUIRED for LFS files)
+git push origin main
+```
+
+### Helper Scripts
+
+Use our validation tools to ensure proper LFS handling:
+
+```bash
+# Setup and verify LFS
+./scripts/setup_git_lfs.sh
+
+# Validate a file before adding
+./scripts/validate_lfs_file.sh screenshot_2025-09-27_demo.png
+```
+
+### File Naming for LFS
+
+Before adding files to LFS, ensure proper naming:
+- ✅ `screenshot_2025-09-27_feature_demo.png`
+- ❌ `Screenshot 2025-09-27 130131.png` (spaces, generic)
 
 ## Contact
 
