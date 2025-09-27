@@ -17,7 +17,34 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-@NOTION @TEM FIX ME NOW @MAIN():!
+We take security vulnerabilities seriously and appreciate responsible disclosure. If you discover a security vulnerability in this project, please follow these steps:
+
+### Security Contact
+- **Primary Contact**: calvinstephenthomas@gmail.com
+- **Urgent/Critical Issues**: applmountain@icloud.com
+
+### Reporting Process
+1. **DO NOT** open a public issue for security vulnerabilities
+2. Send a detailed report to our security contact email
+3. Include the following information:
+   - Description of the vulnerability
+   - Steps to reproduce the issue
+   - Potential impact assessment
+   - Any suggested fixes or mitigations
+
+### Response Timeline
+- **Acknowledgment**: Within 48 hours of report
+- **Initial Assessment**: Within 1 week
+- **Resolution Timeline**: Varies based on severity, typically 30-90 days
+
+### Vulnerability Severity Classification
+- **Critical**: Remote code execution, authentication bypass
+- **High**: Privilege escalation, data breach potential
+- **Medium**: Information disclosure, denial of service
+- **Low**: Minor security improvements
+
+### Recognition
+Security researchers who responsibly disclose vulnerabilities will be acknowledged in our security advisories and contributors list (with permission).
 <img width="2202" height="950" alt="image" src="https://github.com/user-attachments/assets/f3c0dfb3-3df7-456e-ac64-e59b0a679507" />
 
 
