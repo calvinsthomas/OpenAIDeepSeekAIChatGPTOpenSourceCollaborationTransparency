@@ -114,6 +114,35 @@ dmypy.json
 *.combsec_log
 .combsec_keys/
 temp_keys/
+
+# Large media files (GitHub file size limits)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+*.m4v
+*.3gp
+
+# Large audio files
+*.wav
+*.flac
+*.aiff
+*.m4a
+*.wma
+
+# Large image files
+*.psd
+*.ai
+*.eps
+*.indd
+*.raw
+*.cr2
+*.nef
+*.orf
+*.sr2
 =======
 # File Organization and Naming Convention .gitignore
 
