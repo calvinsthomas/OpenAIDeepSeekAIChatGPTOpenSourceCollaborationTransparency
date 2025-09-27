@@ -17,6 +17,10 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
+@NOTION @TEM FIX ME NOW @MAIN():!
+<img width="2202" height="950" alt="image" src="https://github.com/user-attachments/assets/f3c0dfb3-3df7-456e-ac64-e59b0a679507" />
+
+
 Use this section to tell people how to report a vulnerability.
 
 Tell them where to go, how often they can expect to get an update on a
