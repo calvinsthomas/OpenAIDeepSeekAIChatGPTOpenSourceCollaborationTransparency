@@ -598,15 +598,16 @@ def run_comprehensive_tests():
     print("🌐 QXR Social Media Integration - Comprehensive Test Suite")
     print("=" * 70)
     
-    # Create test suite
+    # Create test suite using modern TestLoader approach
+    loader = unittest.TestLoader()
     suite = unittest.TestSuite()
     
-    # Add test cases
-    suite.addTest(unittest.makeSuite(TestSocialMediaEngine))
-    suite.addTest(unittest.makeSuite(TestNotebookProcessor))
-    suite.addTest(unittest.makeSuite(TestIntegration))
-    suite.addTest(unittest.makeSuite(TestNotionPageGenerator))
-    suite.addTest(unittest.makeSuite(TestEnhancedSocialMediaEngine))
+    # Add test cases using TestLoader (replacing deprecated makeSuite)
+    suite.addTest(loader.loadTestsFromTestCase(TestSocialMediaEngine))
+    suite.addTest(loader.loadTestsFromTestCase(TestNotebookProcessor))
+    suite.addTest(loader.loadTestsFromTestCase(TestIntegration))
+    suite.addTest(loader.loadTestsFromTestCase(TestNotionPageGenerator))
+    suite.addTest(loader.loadTestsFromTestCase(TestEnhancedSocialMediaEngine))
     
     # Run tests with detailed output
     runner = unittest.TextTestRunner(verbosity=2, stream=sys.stdout)
