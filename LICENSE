@@ -1,0 +1,47 @@
+MIT License with Developer Attribution Requirements
+
+Copyright (c) 2024 Calvin Stephen Thomas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+DEVELOPER ATTRIBUTION AND COMPENSATION REQUIREMENTS:
+
+1. All contributors to this project must be properly attributed in the 
+   CONTRIBUTORS.md file and relevant source code headers.
+
+2. Any paid development work must be performed under written agreement
+   specifying compensation terms, deliverables, and timelines.
+
+3. Contributors who have performed unpaid work may seek resolution through
+   the process outlined in CONTRIBUTORS.md.
+
+4. Commercial use of this software requires acknowledgment of all contributors
+   as listed in CONTRIBUTORS.md.
+
+INTELLECTUAL PROPERTY PROTECTION:
+
+- The ACTNEWWORLDODOR security system remains proprietary while allowing
+  open-source distribution for collaborative development.
+- Core algorithmic trading methodologies are protected under separate 
+  intellectual property agreements.
+- Open-source components are available for modification and distribution
+  under this license.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+For questions about licensing, contributor compensation, or intellectual 
+property matters, contact: calvinstephenthomas@gmail.com
