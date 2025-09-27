@@ -181,4 +181,27 @@ __pycache__/
 !sample_*
 !template_*
 !example_*
+
+# Media file patterns to prevent future issues
+# Large video files (>100MB should use Git LFS)
+*.mp4
+*.avi 
+*.mov
+*.wmv
+*.flv
+*.webm
+
+# Prevent poorly named media files
+*Screen Recording*
+*Screenshot*
+*.mp4/  # Directories with file extensions
+*.png/
+*.jpg/
+
+# Allow properly named media files
+!*_demo.mp4
+!*_recording_*.mp4
+!*_screenshot_*.png
+!demo_*.mp4
+!screen_recording_*.mp4
  main
