@@ -29,6 +29,34 @@ else
 fi
 
 echo ""
+echo "Checking for directories with file extensions..."
+
+# Check for directories that have file extensions (problematic pattern)
+bad_dirs=$(find . -type d -not -path "./.git/*" -name "*.mp4" -o -name "*.png" -o -name "*.jpg" -o -name "*.avi" | head -10)
+
+if [ -n "$bad_dirs" ]; then
+    echo "❌ Directories with file extensions found:"
+    echo "$bad_dirs"
+    echo "  → Directories should not have file extensions"
+else
+    echo "✅ No directories with file extensions found"
+fi
+
+echo ""
+echo "Checking media file naming..."
+
+# Check for media files with problematic naming patterns
+bad_media=$(find . -type f -not -path "./.git/*" \( -name "*Screen Recording*" -o -name "*Screenshot*" \) | head -10)
+
+if [ -n "$bad_media" ]; then
+    echo "❌ Media files with poor naming found:"
+    echo "$bad_media"
+    echo "  → Use descriptive names like 'screen_recording_YYYY-MM-DD_description.mp4'"
+else
+    echo "✅ Media file naming looks good"
+fi
+
+echo ""
 echo "=== File Organization Summary ==="
 echo "Total files: $(find . -type f -not -path "./.git/*" | wc -l)"
 echo "Files with extensions: $(find . -type f -not -path "./.git/*" -name "*.*" | wc -l)"
