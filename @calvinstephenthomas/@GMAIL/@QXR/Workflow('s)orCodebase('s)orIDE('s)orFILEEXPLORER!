@@ -1,0 +1,105 @@
+Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+10:28 PM (0 minutes ago)
+to me
+
+Hello calvinstephenthomas@gmail.com,
+
+We're writing to let you know that the group you tried to contact (info) may not exist, or you may not have permission to post messages to the group. A few more details on why you weren't able to post:
+
+ * You might have spelled or formatted the group name incorrectly.
+ * The owner of the group may have removed this group.
+ * You may need to join the group before receiving permission to post.
+ * This group may not be open to posting.
+
+If you have questions related to this or any other Google Group, visit the Help Center at https://support.google.com/a/x.com/bin/topic.py?topic=25838.
+
+Thanks,
+
+x.com admins
+
+
+
+----- Original message -----
+
+X-Received: by 2002:a05:6a00:17a8:b0:781:239d:f2da with SMTP id d2e1a72fcca58-781239df53fmr2701739b3a.31.1758940097654;
+        Fri, 26 Sep 2025 19:28:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758940097; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NdmsRklx89wcdvaicvV0K5AJ7CMXem3Z18CJqXpgvxeytGuP+EoxBxRzk4wIsA08gR
+         PoPjb/o9w2zag7DbTBlZW8rMhiuDhFgOglCgc61MLKW+ky7hwJiZzrk/1lnSt6hMmqcN
+         z5ksUifJcv9pGW0pHUS92o32/tpnZzOOdeucHRayH4ABUsI54ZiyMzh0NTjg/9NPSHbp
+         EFY722mFZTDKX5DtO9iRH1RPOX6GemMYaH9pyOQLcz/V4AaT66XFKd9OjZdgvn9pVlTK
+         cNWpthYJa+irWIVHJlLnlhIE5xbMEUBavS7YfKa+QxBntvkYuqK3SajuwakFQJZerOpz
+         7zmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=sJs8uZSykHsjD0yh43hmq9VqSTaCkthbTr6s6IhfBh0=;
+        fh=XqzNHkwC0jL+D+e1tXIt7hcpOqYMB+xWX0d3TFfZayw=;
+        b=Ir/QMSDSWpHA7YeOJdaAvWNCX0gU05AJbqnhmEet7Fv3LO06VffBov//86w8/fc/6I
+         kZuZ4SIhDIQPMcJLQHFfIgqVLb2uuIFdM/YeF/q3Sx+RJZkiEO8jaPRaz3Fghrs/ZSOf
+         gewX0NUlbPhLu8XcncKYmuKEW5gZXpvjzALxHbVEFggvViY2PmQukKO5F3bTc/XGv+w1
+         QNH994hkxsJ7UiSFw3cLrV+mfdyDfrSqpQyvHUUXGK1W4NC1R8wIO8gtF/YCQvixCpWl
+         ctFyjds8gws3iJUyaZhB9/3Fhl+xShGPlABzRwmYSO+cJW+JfXcxzWKH+Gll106GFMTS
+         FITw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b="V+RrBDa/";
+       spf=pass (google.com: domain of calvinstephenthomas@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=calvinstephenthomas@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@x.com
+Return-Path: <calvinstephenthomas@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-781028c4228sor3963924b3a.7.2025.09.26.19.28.17
+        for <info@x.com>
+        (Google Transport Security);
+        Fri, 26 Sep 2025 19:28:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of calvinstephenthomas@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b="V+RrBDa/";
+       spf=pass (google.com: domain of calvinstephenthomas@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=calvinstephenthomas@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@x.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758940097; x=1759544897; darn=x.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sJs8uZSykHsjD0yh43hmq9VqSTaCkthbTr6s6IhfBh0=;
+        b=V+RrBDa/lWYjc053JBewBmJfkFPV8bBF70R380ZPT5xabjboxrZ6OBiVQh09Qu7s3d
+         GduMd2pEI/qtjBmK5YgjPbr98wJMcjQA9055yDXm/+IQYbwg0mWhYDpimJ9UU9tcvy1N
+         P/4MzbakK05K/7jy8Lbn3oO0h3XuQNN34v1bw5BwXfcbslHRRNHmHV/nDHML2Ao8n5nK
+         T2LCtfeSj67HjBGPQ7hHlZrWIe6nxdmeStXL1UFYpwNjzFjbqx5yYQU37dRa4izRZSM0
+         FpFYZctPuyVE6pJQHi4SMueZJ+4IOxSAXnSNIXkZnB3Y9mrshNoWXcy74ZB4jJAdwlhE
+         zLfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758940097; x=1759544897;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sJs8uZSykHsjD0yh43hmq9VqSTaCkthbTr6s6IhfBh0=;
+        b=HL/9lW5Jloy6wHV7a4rTZks9WPyfjXDKyma64bqhOhRAftSLuz69dv3tV6YshAnzxa
+         /0WuyCVKeqAG3CtqrWq9F4POBIPfNKxjoZffe1lZDkGou0n+Z1cAy3A+OcqnVFudrGhp
+         M8+JiE9Zx9H0f/gx4e+jguzS8qV8kKQqv5vuu9hdWOgyZWo7ONpkKW/dg5bAz+jTz/ch
+         URpOsJJ652+vM2EfrE1ETVgXYOymKnlXTqALB6yUzxNR1292bBeSjuwNni48wvXrV1eV
+         rpVXUi4z1aPr6cW5ABu8CGSoF5haUatSYRCs0fh2flc4K2L8tzCV+uTLUynQRwGukf/x
+         aEFw==
+X-Gm-Message-State: AOJu0Yw6JPBdsOGdIhCiUFrSDjIPOJ219fDX3ZSZrsCfz7vzVmdJhz6J
+        SnbUQ/tr7BHKq6dKl5yLtZsI1uuVVGjnWuqk6J2fZpWY9teF76w7jLQZqoChoJQtrg6QBaMR3Ec
+        yfPDFL2O4BvO5C3NcruwzVzshdm3xZhPwI7OcY96aig==
+X-Gm-Gg: ASbGncus9JdB5GZ0p7ZJJi10rZSbbmPUlT3+92eWvxWQfYRuT7pIyFfAIygwp7SgYbF
+        0kX8lptc7c5YpsCdKz7fKyFYbAeNv4B/S7AQAT/MFUbxxdGYUvFxy/P+vaImw9/fs3omCRW7+oJ
+        GCv2jsB7imk/3bRraVTb5EXVj8CrL2eopNkiPpm0w/D489+b0xIg40OtqR9DFbgxBrFsq41/OSl
+        p9nJ8HWj2kaFDtiSj0XvRx9vv0ij3p8UFye/RmySReps0svlW8=
+X-Google-Smtp-Source: AGHT+IHBzWJIOFjqwK07oMQdWZoTW7P/ifmke5AJpGNk7vQez4xPh51pcBuGO8nmAUN0Kpx0yKQ6U0L5jEXuA+1vm4U=
+X-Received: by 2002:a17:90b:4a42:b0:32b:dfdb:b27f with SMTP id
+ 98e67ed59e1d1-3342a2bede7mr11303531a91.17.1758940096420; Fri, 26 Sep 2025
+ 19:28:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <DA.52.39989.31A47D86@x.com>
+In-Reply-To: <DA.52.39989.31A47D86@x.com>
+From: Calvin Thomas <calvinstephenthomas@gmail.com>
+Date: Fri, 26 Sep 2025 22:27:39 -0400
+X-Gm-Features: AS18NWC7AHyQzvLHNSucu1dv70_-M8PwQ8yhD8IJ6zeqPS_DQGdvIqxrIc1mkPk
+Message-ID: <CAH8JXbxn0=-uycy1gg_5eMHfFeEKTB-fPdxkXzzNzp1WrG0R=w@mail.gmail.com>
+Subject: Re: 642166 is your X verification code
+To: X <info@x.com>
+Content-Type: multipart/related; boundary="000000000000a1453a063fbf272c"
