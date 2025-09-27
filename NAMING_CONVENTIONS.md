@@ -27,6 +27,15 @@ All files MUST have appropriate extensions that indicate their type and purpose:
 - `.js` - JavaScript files
 - `.ts` - TypeScript files
 
+#### Media Files
+- `.mp4` - Video files (screen recordings, demonstrations)
+- `.png` - Image files (screenshots, diagrams)
+- `.jpg/.jpeg` - Image files (photos, compressed images)
+- `.gif` - Animated images
+- `.svg` - Vector graphics
+- `.webm` - Web video format
+- `.avi` - Video format
+
 ### 2. Naming Convention Rules
 
 #### File Names
@@ -41,16 +50,29 @@ All files MUST have appropriate extensions that indicate their type and purpose:
 - ✅ `config_settings.xml`
 - ✅ `sample_template.xlsx`
 - ✅ `file_validator.py`
+- ✅ `screen_recording_2025-09-26_demo.mp4`
+- ✅ `api_error_screenshot.png`
 - ❌ `ODOMETERFAKE!`
 - ❌ `Screenshot 2025-09-22 221121.png`
+- ❌ `Screen Recording 2025-09-26 153851.mp4`
 - ❌ `File1`
 - ❌ `data`
+- ❌ `.mp4` (directory with file extension)
 
 #### Directory Names
 - Follow same rules as file names
 - Use descriptive names that indicate purpose
 - Avoid excessive nesting (max 3-4 levels)
 - Use consistent patterns across the repository
+- **NEVER** use file extensions as directory names (e.g., avoid `.mp4/`, `.png/`)
+
+#### Media File Specific Rules
+- Screen recordings: `screen_recording_YYYY-MM-DD_description.mp4`
+- Screenshots: `screenshot_YYYY-MM-DD_description.png` 
+- Demo videos: `demo_feature_name.mp4`
+- Avoid generic names like "Screen Recording" or "Screenshot"
+- Include dates in ISO format (YYYY-MM-DD) when relevant
+- Use descriptive suffixes indicating content or purpose
 
 ### 3. Executable Files Standards
 

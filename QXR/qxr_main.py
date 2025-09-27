@@ -156,6 +156,7 @@ def show_help():
     print("  python3 qxr_main.py --help    - Show this help")
     print("  python3 qxr_main.py --test    - Run tests")
     print("  python3 qxr_main.py --graphql  - GraphQL API demo")
+    print("  python3 qxr_main.py --custom   - Run custom workflow loader")
     print()
     print("Files generated:")
     print("  • Master markdown file with all platform posts")
@@ -181,7 +182,17 @@ def run_tests():
     
     try:
         from test_social_integration import run_comprehensive_tests
-        return run_comprehensive_tests()
+        social_tests_passed = run_comprehensive_tests()
+        
+        # Also run custom workflow loader tests
+        try:
+            from test_custom_workflow_loader import run_custom_workflow_tests
+            custom_tests_passed = run_custom_workflow_tests()
+            return social_tests_passed and custom_tests_passed
+        except ImportError:
+            print("⚠️ Custom workflow loader tests not available")
+            return social_tests_passed
+            
     except ImportError as e:
         print(f"❌ Error importing test module: {e}")
         return False
@@ -201,6 +212,26 @@ def run_graphql_demo():
         return False
 
 
+def run_custom_workflow():
+    """Run custom workflow loader"""
+    print("🎬 Running Custom Workflow Loader...")
+    print()
+    
+    try:
+        from custom_workflow_loader import CustomWorkflowLoader
+        loader = CustomWorkflowLoader()
+        
+        if loader.check_command_file():
+            return loader.execute_custom_workflow()
+        else:
+            print("❌ No custom workflow command file found")
+            print(f"Expected location: {loader.command_file}")
+            return False
+    except ImportError as e:
+        print(f"❌ Error importing custom workflow loader: {e}")
+        return False
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == "--help" or sys.argv[1] == "-h":
@@ -211,6 +242,9 @@ if __name__ == "__main__":
             sys.exit(0 if success else 1)
         elif sys.argv[1] == "--graphql":
             success = run_graphql_demo()
+            sys.exit(0 if success else 1)
+        elif sys.argv[1] == "--custom":
+            success = run_custom_workflow()
             sys.exit(0 if success else 1)
         else:
             print(f"Unknown argument: {sys.argv[1]}")
